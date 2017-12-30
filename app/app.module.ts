@@ -1,12 +1,15 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
+import { appRouter } from "./router"
+
 import { EventsApp } from "./events-app"
+import { NavBarComponent } from "./nav/nav-bar.component"
+
 import { EventListComponent } from "./events/event-list.component"
-import { EventsService } from "./events/shared/events-service"
 import { EventThumbComponent } from "./events/event-thumb.component"
-import { appRouter } from "./router";
-import { NavBarComponent } from "./nav/nav-bar.component";
+import { EventsService } from "./events/shared/events-service"
+import { CreateEventComponent } from "./events/create-event/create-event.component"
 
 @NgModule({
   imports: [
@@ -18,11 +21,25 @@ import { NavBarComponent } from "./nav/nav-bar.component";
     NavBarComponent,
     EventListComponent, 
     EventThumbComponent,
+    CreateEventComponent
   ],
   bootstrap: [EventsApp],
   providers: [
-    EventsService
+    EventsService,
+    {
+      provide: 'createEventDeactivate',
+      useValue: createEventDeactivate
+    }
   ]
 })
 
-export class AppModule{}
+export class AppModule{
+
+}
+
+function createEventDeactivate(createEventComp: CreateEventComponent) {
+  if(createEventComp.isDirty)
+    return window.confirm('Do you want to exit without saving?')
+
+  return true
+}
