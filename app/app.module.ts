@@ -10,6 +10,7 @@ import { EventListComponent } from "./events/event-list.component"
 import { EventThumbComponent } from "./events/event-thumb.component"
 import { EventsService } from "./events/shared/events-service"
 import { CreateEventComponent } from "./events/create-event/create-event.component"
+import { EventDetailsComponent } from "./events/event-details/event-details.component";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { CreateEventComponent } from "./events/create-event/create-event.compone
     NavBarComponent,
     EventListComponent, 
     EventThumbComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    EventDetailsComponent
   ],
   bootstrap: [EventsApp],
   providers: [

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { IEvent } from "./shared/events-model"
-import { EventsService } from "./shared/events-service";
+import { EventsService } from "./shared/events-service"
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'event-list',
@@ -20,7 +21,7 @@ import { EventsService } from "./shared/events-service";
 export class EventListComponent implements OnInit {
   events:IEvent[]
 
-  constructor(private eventsService: EventsService) {
+  constructor(private eventsService: EventsService, private router: Router) {
   }
 
   ngOnInit() {
@@ -30,6 +31,6 @@ export class EventListComponent implements OnInit {
   }
 
   handleEventClick(ev) {
-    console.log(ev)
+    this.router.navigate(['events', ev.id])
   }
 }
