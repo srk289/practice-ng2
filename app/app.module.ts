@@ -6,13 +6,19 @@ import { EventListComponent } from "./events/event-list.component"
 import { EventsService } from "./events/shared/events-service"
 import { EventThumbComponent } from "./events/event-thumb.component"
 import { appRouter } from "./router";
+import { NavBarComponent } from "./nav/nav-bar.component";
 
 @NgModule({
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRouter)
   ],
-  declarations: [EventsApp, EventListComponent, EventThumbComponent],
+  declarations: [
+    EventsApp, 
+    NavBarComponent,
+    EventListComponent, 
+    EventThumbComponent,
+  ],
   bootstrap: [EventsApp],
   providers: [
     EventsService
