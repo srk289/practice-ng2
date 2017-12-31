@@ -11,6 +11,7 @@ import { EventThumbComponent } from "./events/event-thumb.component"
 import { EventsService } from "./events/shared/events-service"
 import { CreateEventComponent } from "./events/create-event/create-event.component"
 import { EventDetailsComponent } from "./events/event-details/event-details.component";
+import { Http404 } from "./errors/404.component";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { EventDetailsComponent } from "./events/event-details/event-details.comp
     EventListComponent, 
     EventThumbComponent,
     CreateEventComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    Http404
   ],
   bootstrap: [EventsApp],
   providers: [
