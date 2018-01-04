@@ -9,16 +9,21 @@ import { Router } from "@angular/router"
   <hr>
   <div class="col-md-4">
     <form autocomplete="off" [formGroup]="profileForm" (ngSubmit)="saveEdit(profileForm.value)">
-      <div class="form-group" >
+      <div class="form-group" 
+        [class.error]="!validateFirstname()">
+        <em *ngIf="!validateFirstname()"><sup>*</sup> Required</em>
+        <em *ngIf="!validateFirstname() && profileForm.controls.firstname?.errors?.pattern"><sup>*</sup> Cannot start with a number</em>
         <label for="firstname">Firstname:</label>
         <input formControlName="firstname" name="firstname" id="firstname" type="text" required class="form-control" placeholder="Firstname..." />
       </div>
-      <div class="form-group" >
+      <div class="form-group" 
+        [class.error]="!validateLastname()">
+        <em *ngIf="!validateLastname()"><sup>*</sup> Required</em>
         <label for="lastname">Last Name:</label>
         <input formControlName="lastname" name="lastname" id="lastname" type="text" required class="form-control" placeholder="Last Name..." />
       </div>
       <span>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button [disabled]="profileForm.invalid" type="submit" class="btn btn-primary">Save</button>
       </span>
       <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
     </form>
@@ -26,6 +31,11 @@ import { Router } from "@angular/router"
 `,
 styles: [`
   .form-group>em{float: right; color: red}
+  .error input {background: #E3C3C5}
+  .error ::-webkit-input-placeholder {color: #999}
+  .error ::-moz-placeholder {color: #999}
+  .error :-moz-placeholder {color: #999}
+  .error :ms-input-placeholder {color: #999}
 `]
 })
 
@@ -39,7 +49,7 @@ export class ProfileComponent implements OnInit{
 
   ngOnInit() {
 
-    this.firstname = new FormControl(this.auth.currentUser.firstname, [Validators.required])
+  this.firstname = new FormControl(this.auth.currentUser.firstname, [Validators.required, Validators.pattern('[a-zA-Z].*')])
     this.lastname = new FormControl(this.auth.currentUser.lastname, [Validators.required])
     
     this.profileForm = new FormGroup({
@@ -53,6 +63,13 @@ export class ProfileComponent implements OnInit{
     this.router.navigate(['events'])
   }
 
+  validateFirstname() {
+    return this.firstname.valid || this.firstname.untouched
+  }
+
+  validateLastname() {
+    return this.lastname.valid || this.lastname.untouched
+  }
   cancel() {
     this.router.navigate(['events'])
   }
