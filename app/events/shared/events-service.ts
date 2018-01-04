@@ -23,7 +23,7 @@ export class EventsService {
 const EVENTS = [
   {
     id: 1,
-    name: 'Angular Connect',
+    name: 'Polymer Connect',
     date: new Date('9/26/2036'),
     time: '10:00 am',
     price: 599.99,
@@ -36,7 +36,7 @@ const EVENTS = [
     sessions: [
       {
         id: 1,
-        name: "Using Angular 4 Pipes",
+        name: "Using Polymer 4 Pipes",
         presenter: "Peter Bacon Darwin",
         duration: 1,
         level: "Intermediate",

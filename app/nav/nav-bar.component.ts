@@ -1,4 +1,6 @@
 import { Component } from "@angular/core"
+import { UserAuthenticate } from "../user/shared/user.authenticate";
+import { ICurrentUser } from "../user/shared/user.model";
 
 @Component({
   selector: 'nav-bar',
@@ -13,4 +15,17 @@ import { Component } from "@angular/core"
   `]
 })
 
-export class NavBarComponent {}
+export class NavBarComponent{
+  user:ICurrentUser
+  constructor(private auth: UserAuthenticate) {}
+
+  
+
+  isAuthenticated() {
+    let isAuthenticated = this.auth.isAuthenticated()
+    if(isAuthenticated)
+      this.user = this.auth.currentUser
+
+    return isAuthenticated
+  }
+}

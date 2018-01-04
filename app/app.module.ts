@@ -5,13 +5,16 @@ import { appRouter } from "./router"
 
 import { EventsApp } from "./events-app"
 import { NavBarComponent } from "./nav/nav-bar.component"
-
-import { EventListComponent } from "./events/event-list.component"
-import { EventThumbComponent } from "./events/event-thumb.component"
-import { EventsService } from "./events/shared/events-service"
-import { CreateEventComponent } from "./events/create-event/create-event.component"
-import { EventDetailsComponent } from "./events/event-details/event-details.component";
 import { Http404 } from "./errors/404.component";
+
+import { EventListComponent,
+         EventThumbComponent,
+         EventsService, 
+         CreateEventComponent,
+         EventDetailsComponent,
+         EventDetailsActivator,
+         EventListResolver } from "./events/index";
+import { UserAuthenticate } from "./user/shared/user.authenticate";
 
 @NgModule({
   imports: [
@@ -30,10 +33,13 @@ import { Http404 } from "./errors/404.component";
   bootstrap: [EventsApp],
   providers: [
     EventsService,
+    EventDetailsActivator,
+    EventListResolver,
     {
       provide: 'createEventDeactivate',
       useValue: createEventDeactivate
-    }
+    },
+    UserAuthenticate
   ]
 })
 

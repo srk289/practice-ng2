@@ -10,10 +10,8 @@ import { ActivatedRoute, Router } from "@angular/router"
 export class EventDetailsComponent implements OnInit{
   event:IEvent
   constructor(private router: Router, private eventsService: EventsService, private activatedRoute: ActivatedRoute) {}
+  
   ngOnInit() {
-    let event = this.eventsService.getEvent(+this.activatedRoute.snapshot.params['id'])
-    if(!(!!event))
-      this.router.navigate(['404'])
-    this.event = event
+    this.event = this.eventsService.getEvent(+this.activatedRoute.snapshot.params['id'])
   }
 }
