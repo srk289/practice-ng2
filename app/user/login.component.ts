@@ -10,14 +10,21 @@ import { UserAuthenticate } from "./shared/user.authenticate";
     <form autocomplete="off" #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" novalidate>
       <div class="form-group" >
         <label for="userName">User Name:</label>
+        <em [hidden]="!(loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || submitHover))">
+            <sup>*</sup>Required
+        </em>
         <input (ngModel)="userName" name="userName" id="userName" type="text" required class="form-control" placeholder="User Name..." />
       </div>
       <div class="form-group" >
         <label for="password">Password:</label>
+        <em [hidden]="!(loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || submitHover))">
+            <sup>*</sup>Required
+        </em>
         <input (ngModel)="password" name="password" id="password" type="password" required class="form-control" placeholder="Password..." />
       </div>
-      <span>
-        <button type="submit" class="btn btn-primary">Login</button>
+      <span (mouseenter)="submitHover = true" 
+            (mouseleave)="submitHover = false">
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
       </span>
       <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
     </form>
