@@ -10,14 +10,14 @@ import { Router } from "@angular/router"
   <div class="col-md-4">
     <form autocomplete="off" [formGroup]="profileForm" (ngSubmit)="saveEdit(profileForm.value)">
       <div class="form-group" 
-        [class.error]="!validateFirstname()">
-        <em *ngIf="!validateFirstname()"><sup>*</sup> Required</em>
-        <em *ngIf="!validateFirstname() && profileForm.controls.firstname?.errors?.pattern"><sup>*</sup> Cannot start with a number</em>
+        [ngClass]="{'error': !validateFirstname()}">
+        <em *ngIf="!validateFirstname() && profileForm.controls.firstname.errors.required"><sup>*</sup> Required</em>
+        <em *ngIf="!validateFirstname() && profileForm.controls.firstname.errors.pattern"><sup>*</sup> Cannot start with a number</em>
         <label for="firstname">Firstname:</label>
         <input formControlName="firstname" name="firstname" id="firstname" type="text" required class="form-control" placeholder="Firstname..." />
       </div>
       <div class="form-group" 
-        [class.error]="!validateLastname()">
+        [ngClass]="{'error': !validateLastname()}">
         <em *ngIf="!validateLastname()"><sup>*</sup> Required</em>
         <label for="lastname">Last Name:</label>
         <input formControlName="lastname" name="lastname" id="lastname" type="text" required class="form-control" placeholder="Last Name..." />
@@ -41,9 +41,9 @@ styles: [`
 
 export class ProfileComponent implements OnInit{
   
-  firstname:FormControl
-  lastname:FormControl
-  profileForm:FormGroup
+  private firstname:FormControl
+  private lastname:FormControl
+  private profileForm:FormGroup
   
   constructor(private auth: UserAuthenticate, private router: Router) { }
 
