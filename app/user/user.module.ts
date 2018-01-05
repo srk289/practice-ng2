@@ -9,9 +9,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(userRouter),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forChild(userRouter)
   ],
   declarations: [
     ProfileComponent,
