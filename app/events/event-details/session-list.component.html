@@ -1,0 +1,8 @@
+<div class="row" *ngFor="let session of sessions">
+    <container-well [title]="session.name">
+        <h6>{{session.presenter}}</h6>
+        <span>Duration: {{session.duration}}</span><br />
+        <span>Level: {{session.level}}</span>
+        <p>{{session.abstract}}</p>
+    </container-well>
+</div>
