@@ -15,7 +15,8 @@ import { EventListComponent,
          EventDetailsComponent,
          EventDetailsActivator,
          EventListResolver,
-         CreateSessionComponent } from "./events/index";
+         CreateSessionComponent, 
+         SessionListComponent} from "./events/index";
 import { UserAuthenticate } from "./user/shared/user.authenticate";
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UserAuthenticate } from "./user/shared/user.authenticate";
     CreateEventComponent,
     EventDetailsComponent,
     CreateSessionComponent,
+    SessionListComponent,
     Http404
   ],
   bootstrap: [EventsApp],
