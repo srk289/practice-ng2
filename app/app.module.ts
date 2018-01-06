@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { appRouter } from "./router"
 
 import { EventsApp } from "./events-app"
@@ -13,13 +14,16 @@ import { EventListComponent,
          CreateEventComponent,
          EventDetailsComponent,
          EventDetailsActivator,
-         EventListResolver } from "./events/index";
+         EventListResolver,
+         CreateSessionComponent } from "./events/index";
 import { UserAuthenticate } from "./user/shared/user.authenticate";
 
 @NgModule({
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRouter)
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRouter),
   ],
   declarations: [
     EventsApp, 
@@ -28,6 +32,7 @@ import { UserAuthenticate } from "./user/shared/user.authenticate";
     EventThumbComponent,
     CreateEventComponent,
     EventDetailsComponent,
+    CreateSessionComponent,
     Http404
   ],
   bootstrap: [EventsApp],
