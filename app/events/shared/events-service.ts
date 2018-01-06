@@ -23,6 +23,11 @@ export class EventsService {
     event.session = []
     EVENTS.push(event)
   }
+
+  updateEvent(event) {
+    let eventIndex:number = EVENTS.findIndex(i => i.id === event.id)
+    EVENTS[eventIndex] = event
+  }
 }
 
 
