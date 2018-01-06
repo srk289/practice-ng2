@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ISession } from "../index";
+import { ISession, restrictedWords } from "../index";
 
 @Component({
   templateUrl: '/app/events/create-event/create-session.component.html',
@@ -28,7 +28,7 @@ export class CreateSessionComponent implements OnInit {
     this.presenter = new FormControl('', Validators.required)
     this.duration = new FormControl('', Validators.required)
     this.level = new FormControl('', Validators.required)
-    this.abstract = new FormControl('', Validators.required)
+    this.abstract = new FormControl('', [ Validators.required, Validators.maxLength(400), restrictedWords(['foo', 'bar']) ])
 
     this.sessionForm = new FormGroup({
       name: this.name,
@@ -39,10 +39,21 @@ export class CreateSessionComponent implements OnInit {
     })
 
   } 
-  saveForm(data) {
+  saveForm(formData) {
+    let data:ISession = {
+      id: undefined,
+      name: formData.name,
+      presenter: formData.presenter,
+      duration: +formData.duration,
+      level: formData.level,
+      abstract: formData.abstract,
+      voters: []
+    }
     console.log(data)
   }
   cancel() {
     this.router.navigate(['events'])
   }
+
+  
 }
