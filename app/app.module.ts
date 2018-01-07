@@ -6,7 +6,7 @@ import { appRouter } from "./router"
 
 import { EventsApp } from "./events-app"
 import { NavBarComponent } from "./nav/nav-bar.component"
-import { Http404 } from "./errors/404.component";
+import { Http404 } from "./errors/404.component"
 
 import { EventListComponent,
          EventThumbComponent,
@@ -16,8 +16,9 @@ import { EventListComponent,
          EventDetailsActivator,
          EventListResolver,
          CreateSessionComponent, 
-         SessionListComponent} from "./events/index";
-import { UserAuthenticate } from "./user/shared/user.authenticate";
+         SessionListComponent} from "./events/index"
+import { UserAuthenticate } from "./user/shared/user.authenticate"
+import { ContainerWellComponent } from "./common/container-well.component"
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { UserAuthenticate } from "./user/shared/user.authenticate";
     EventDetailsComponent,
     CreateSessionComponent,
     SessionListComponent,
+    ContainerWellComponent,
     Http404
   ],
   bootstrap: [EventsApp],
