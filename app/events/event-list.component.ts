@@ -11,7 +11,7 @@ import { Router, ActivatedRoute } from "@angular/router"
     <event-thumb 
       *ngFor="let event of events" 
       [event]="event"
-      (click)="handleEventClick(event)"></event-thumb>
+      [routerLink]="['/events', event.id]"></event-thumb>
   </div>
   <button class="btn btn-primary">Click</button>
   `
@@ -24,9 +24,5 @@ export class EventListComponent implements OnInit {
 
   ngOnInit() {
     this.events = this.activatedRoute.snapshot.data.events
-  }
-
-  handleEventClick(ev) {
-    this.router.navigate(['events', ev.id])
   }
 }

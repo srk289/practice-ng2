@@ -4,12 +4,15 @@ import { Component } from "@angular/core"
     selector: 'container-well',
     template: `
         <div class="col-md-12">
-            <div class="well" (click)="toggleVisible()">
-                <h4><ng-content select="[well-title]"></ng-content></h4>
+            <div class="well">
+                <h4 (click)="toggleVisible()"><ng-content select="[well-title]"></ng-content></h4>
                 <ng-content *ngIf="visible" select="[well-body]"></ng-content>
             </div>
         </div>
-    `
+    `,
+    styles: [`
+        h4{cursor: pointer}
+    `]
 })
 
 export class ContainerWellComponent {
