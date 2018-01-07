@@ -1,4 +1,4 @@
-<div class="row" *ngFor="let session of sessions">
+<div class="row" *ngFor="let session of visibleSessions">
     <container-well>
         <div well-title>
             {{session.name | uppercase}}
@@ -9,6 +9,7 @@
             <span>Duration: {{ session.duration | duration }}</span><br />
             <span>Level: {{session.level}}</span>
             <p>{{session.abstract}}</p>
+            <p>Voters: {{session.voters?.length}}</p>
         </div>
     </container-well>
 </div>
