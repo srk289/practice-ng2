@@ -16,7 +16,8 @@ import { EventListComponent,
          EventDetailsActivator,
          EventListResolver,
          CreateSessionComponent, 
-         SessionListComponent} from "./events/index"
+         SessionListComponent,
+         DurationPipe} from "./events/index"
 import { UserAuthenticate } from "./user/shared/user.authenticate"
 import { ContainerWellComponent } from "./common/container-well.component"
 
@@ -37,6 +38,7 @@ import { ContainerWellComponent } from "./common/container-well.component"
     CreateSessionComponent,
     SessionListComponent,
     ContainerWellComponent,
+    DurationPipe,
     Http404
   ],
   bootstrap: [EventsApp],
