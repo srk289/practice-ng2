@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, Inject } from "@angular/core"
 import { FormControl, FormGroup, Validators } from "@angular/forms"
 import { UserAuthenticate } from "./shared/user.authenticate"
 import { Router } from "@angular/router"
+import { TOASTR_TOKEN, IToaster } from "../common/toastr.service"
 
 @Component({
   template: `
@@ -45,7 +46,7 @@ export class ProfileComponent implements OnInit{
   private lastname:FormControl
   private profileForm:FormGroup
   
-  constructor(private auth: UserAuthenticate, private router: Router) { }
+  constructor(private auth: UserAuthenticate, private router: Router, @Inject(TOASTR_TOKEN) private toast:IToaster) { }
 
   ngOnInit() {
 
@@ -60,7 +61,7 @@ export class ProfileComponent implements OnInit{
 
   saveEdit(data) {
     this.auth.updateUser(data.firstname, data.lastname)
-    this.router.navigate(['events'])
+    this.toast.success('Profile udpated')
   }
 
   validateFirstname() {
