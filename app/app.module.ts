@@ -20,6 +20,9 @@ import { EventListComponent,
          DurationPipe} from "./events/index"
 import { UserAuthenticate } from "./user/shared/user.authenticate"
 import { ContainerWellComponent } from "./common/container-well.component"
+import { TOASTR_TOKEN, IToaster } from "./common/toastr.service"
+
+declare let toastr:IToaster
 
 @NgModule({
   imports: [
@@ -46,6 +49,10 @@ import { ContainerWellComponent } from "./common/container-well.component"
     EventsService,
     EventDetailsActivator,
     EventListResolver,
+    {
+      provide: TOASTR_TOKEN,
+      useValue: toastr
+    },
     {
       provide: 'createEventDeactivate',
       useValue: createEventDeactivate
