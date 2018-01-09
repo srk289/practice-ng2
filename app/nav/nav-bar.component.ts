@@ -1,6 +1,8 @@
 import { Component } from "@angular/core"
 import { UserAuthenticate } from "../user/shared/user.authenticate";
 import { ICurrentUser } from "../user/shared/user.model";
+import { ISession, EventsService } from "../events/index"
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'nav-bar',
@@ -17,15 +19,24 @@ import { ICurrentUser } from "../user/shared/user.model";
 
 export class NavBarComponent{
   user:ICurrentUser
-  constructor(private auth: UserAuthenticate) {}
-
-  
+  searchTerm:string = ""
+  searchResults:ISession[] = []
+  constructor(private auth: UserAuthenticate, private eventsService: EventsService, private router: Router) {}
 
   isAuthenticated() {
     let isAuthenticated = this.auth.isAuthenticated()
     if(isAuthenticated)
       this.user = this.auth.currentUser
-
     return isAuthenticated
+  }
+
+  searchSession(term) {
+    this.eventsService.searchSessions(term).subscribe((sessions) => {
+      this.searchResults = sessions
+    })
+  }
+
+  eventClick(eventId) {
+    this.router.navigate(['/events', eventId])
   }
 }

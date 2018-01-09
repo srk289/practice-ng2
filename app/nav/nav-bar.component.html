@@ -37,14 +37,23 @@
             </li>
           </ul>
         </div>
-        <form id="searchForm"  class="navbar-form navbar-right"  >
+        <form id="searchForm" autocomplete="off" (ngSubmit)="searchSession(searchTerm)" class="navbar-form navbar-right"  >
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search Sessions" >
+            <input type="text" [(ngModel)]="searchTerm" name="searchTerm" class="form-control" placeholder="Search Sessions" >
           </div>
-          <button class="btn btn-default" >
+          <button class="btn btn-default"  modal-trigger="searchModal">
             Search
           </button>
         </form>
       </div>
     </div>
   </div>
+
+  <simple-modal closeOnBodyClick="false" elementId="searchModal" title="Matching Sessions">
+    <div class="list-group" *ngFor="let session of searchResults">
+      <a class="list-group-item" (click)="eventClick(session.eventId)">
+        {{session.name}}
+      </a>
+    </div>
+  </simple-modal>
+  
