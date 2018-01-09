@@ -8,21 +8,28 @@ import { EventsApp } from "./events-app"
 import { NavBarComponent } from "./nav/nav-bar.component"
 import { Http404 } from "./errors/404.component"
 
-import { EventListComponent,
-         EventThumbComponent,
-         EventsService, 
-         CreateEventComponent,
-         EventDetailsComponent,
-         EventDetailsActivator,
-         EventListResolver,
-         CreateSessionComponent, 
-         SessionListComponent,
-         DurationPipe} from "./events/index"
+import {  EventListComponent,
+          EventThumbComponent,
+          EventsService, 
+          CreateEventComponent,
+          EventDetailsComponent,
+          EventDetailsActivator,
+          EventListResolver,
+          CreateSessionComponent, 
+          SessionListComponent,
+          DurationPipe  } from "./events/index"
+
+import {  JQ_TOKEN, 
+          TOASTR_TOKEN, 
+          IToaster, 
+          ContainerWellComponent,
+          ModalTriggerDirective,   
+          SimpleModalComponent} from "./common/index"
+          
 import { UserAuthenticate } from "./user/shared/user.authenticate"
-import { ContainerWellComponent } from "./common/container-well.component"
-import { TOASTR_TOKEN, IToaster } from "./common/toastr.service"
 
 declare let toastr:IToaster
+declare let jQuery:Object
 
 @NgModule({
   imports: [
@@ -41,6 +48,8 @@ declare let toastr:IToaster
     CreateSessionComponent,
     SessionListComponent,
     ContainerWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective,
     DurationPipe,
     Http404
   ],
@@ -52,6 +61,10 @@ declare let toastr:IToaster
     {
       provide: TOASTR_TOKEN,
       useValue: toastr
+    },
+    {
+      provide: JQ_TOKEN,
+      useValue: jQuery
     },
     {
       provide: 'createEventDeactivate',
