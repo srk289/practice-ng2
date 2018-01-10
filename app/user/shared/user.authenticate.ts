@@ -12,7 +12,7 @@ export class UserAuthenticate implements CanActivate{
       id: 1,
       firstname: 'Srk',
       lastname: 'Konda',
-      username: username
+      username: 'srk289'
     }
     this.router.navigate(['events'])
   }

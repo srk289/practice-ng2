@@ -1,5 +1,7 @@
 import { Component, Input, OnChanges } from "@angular/core"
-import { ISession } from "../index"
+import { UserAuthenticate } from "../../user/shared/user.authenticate"
+import { ISession, EventsService, VotingService } from "../shared/index"
+
 @Component({
     selector: 'session-list',
     templateUrl: '/app/events/event-details/session-list.component.html'
@@ -11,16 +13,31 @@ export class SessionListComponent implements OnChanges {
     @Input() sortBy:string
 
     visibleSessions:ISession[]
+    constructor(private auth: UserAuthenticate, private votingService: VotingService) {}
 
     ngOnChanges() {
         if(this.sessions) {
-            if(this.filterBy === 'all')
-                this.visibleSessions = this.sessions.slice(0)
-            else
-                this.visibleSessions = this.sessions.filter(session => session.level.toLowerCase() === this.filterBy)
+            this.visibleSessions = this.filterBy === 'all' ? 
+                                    this.sessions.slice(0) :
+                                    this.sessions
+                                        .filter(session => session.level.toLowerCase() === this.filterBy)
             
             this.sortBy === 'voters' ? this.visibleSessions.sort(sortByVoters) : this.visibleSessions.sort(sortByNames)
         }
+    }
+
+    toggleVotes(session:ISession) {
+        if(this.hasVoted(session)) {
+            this.votingService.deleteVoter(session, this.auth.currentUser.username)
+        } else {
+            this.votingService.addVoter(session, this.auth.currentUser.username)
+        }
+        if(this.sortBy === "voters")
+            this.visibleSessions.sort(sortByVoters)
+    }
+
+    hasVoted(session:ISession) {
+        return this.votingService.hasVoted(session, this.auth.currentUser.username)
     }
 }
 

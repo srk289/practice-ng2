@@ -74,7 +74,7 @@ const EVENTS = [
         how to write them, and how to get the new AI CLI to write 
         them for you. Given by the famous PBD, president of Angular 
         University (formerly Oxford University)`,
-        voters: ['bradgreen', 'igorminar', 'martinfowler']
+        voters: ['bradgreen', 'igorminar', 'martinfowler', 'srk289']
       },
       {
         id: 2,

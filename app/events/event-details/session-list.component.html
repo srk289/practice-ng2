@@ -1,15 +1,20 @@
 <div class="row" *ngFor="let session of visibleSessions">
-    <container-well>
-        <div well-title>
-            {{session.name | uppercase}}
-            <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color: red"></i>
-        </div>
-        <div well-body>
-            <h6>{{session.presenter}}</h6>
-            <span>Duration: {{ session.duration | duration }}</span><br />
-            <span>Level: {{session.level}}</span>
-            <p>{{session.abstract}}</p>
-            <p>Voters: {{session.voters?.length}}</p>
-        </div>
-    </container-well>
+    <div class="col-md-1" *ngIf="auth.isAuthenticated()">
+        <voting [count]="session.voters.length" (clickVote)="toggleVotes(session)" [voted]="hasVoted(session)"></voting>
+    </div>
+    <div [ngClass]="{'col-md-11': auth.isAuthenticated(), 'col-md-12': !auth.isAuthenticated()}">
+        <container-well>
+            <div well-title>
+                {{session.name | uppercase}}
+                <i *ngIf="session.voters.length > 3" class="glyphicon glyphicon-fire" style="color: red"></i>
+            </div>
+            <div well-body>
+                <h6>{{session.presenter}}</h6>
+                <span>Duration: {{ session.duration | duration }}</span><br />
+                <span>Level: {{session.level}}</span>
+                <p>{{session.abstract}}</p>
+                <p>Voters: {{session.voters?.length}}</p>
+            </div>
+        </container-well>
+    </div>
 </div>
