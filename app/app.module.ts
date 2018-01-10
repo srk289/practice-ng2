@@ -17,7 +17,9 @@ import {  EventListComponent,
           EventListResolver,
           CreateSessionComponent, 
           SessionListComponent,
-          DurationPipe  } from "./events/index"
+          DurationPipe,  
+          VotingComponent,
+          VotingService} from "./events/index"
 
 import {  JQ_TOKEN, 
           TOASTR_TOKEN, 
@@ -51,6 +53,7 @@ declare let jQuery:Object
     SimpleModalComponent,
     ModalTriggerDirective,
     DurationPipe,
+    VotingComponent,
     Http404
   ],
   bootstrap: [EventsApp],
@@ -70,7 +73,8 @@ declare let jQuery:Object
       provide: 'createEventDeactivate',
       useValue: createEventDeactivate
     },
-    UserAuthenticate
+    UserAuthenticate,
+    VotingService
   ]
 })
 
