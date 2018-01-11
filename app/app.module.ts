@@ -19,7 +19,8 @@ import {  EventListComponent,
           SessionListComponent,
           DurationPipe,  
           VotingComponent,
-          VotingService} from "./events/index"
+          VotingService,
+          LocationValidatorDirective} from "./events/index"
 
 import {  JQ_TOKEN, 
           TOASTR_TOKEN, 
@@ -52,6 +53,7 @@ declare let jQuery:Object
     ContainerWellComponent,
     SimpleModalComponent,
     ModalTriggerDirective,
+    LocationValidatorDirective,
     DurationPipe,
     VotingComponent,
     Http404
