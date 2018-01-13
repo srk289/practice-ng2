@@ -56,7 +56,7 @@
       <input (ngModel)="imageUrl" name="imageUrl" required pattern=".*\/.*.(png|jpg)" id="imageUrl" type="text" class="form-control" placeholder="url of image..." />
       <img style="float:right; width: 50px;" *ngIf="newEventForm.controls.imageUrl?.valid" [src]="newEventForm.controls.imageUrl.value" />
     </div>
-    <span (mouseenter)="mouseOnSave = true" (mouseleave)="mouseOnSave = false">
+    <span (mouseenter)="locationGroup.control.controls.address.updateValueAndValidity(); mouseOnSave = true" (mouseleave)="mouseOnSave = false">
       <button type="submit" [disabled]="newEventForm.invalid" class="btn btn-primary">Save</button>
     </span>
     <button type="button"  class="btn btn-default" (click)="cancel()">Cancel</button>
